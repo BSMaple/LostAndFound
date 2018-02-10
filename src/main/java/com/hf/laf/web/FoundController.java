@@ -1,6 +1,7 @@
 package com.hf.laf.web;
 
 
+import com.hf.laf.dto.PaginationDto;
 import com.hf.laf.entity.FoundRegister;
 import com.hf.laf.service.FoundRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,19 @@ public class FoundController {
     public Object update(FoundRegister record) {
         return foundRegisterService.updateRecord(record);
     }
+
+
+    @RequestMapping("/selectpagination")
+    @ResponseBody
+    public Object selectpagination(int limit,int offset) {
+        PaginationDto pag = new PaginationDto();
+        pag.setTotal(foundRegisterService.count());
+        pag.setRows(foundRegisterService.selectPaginationRecord(limit,offset));
+
+        return pag;
+
+
+    }
+
+
 }

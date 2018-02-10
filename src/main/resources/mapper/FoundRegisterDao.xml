@@ -138,11 +138,11 @@
 
     </update>
 
-    <select id="selectpagination" resultType="com.hf.laf.entity.FoundRegister" parameterType="int">
+    <select id="selectpagination" resultType="com.hf.laf.entity.FoundRegister" >
 
         SELECT *
         FROM laf_database.found_register
-        LIMIT #{limit} OFFSET #{offset}
+        LIMIT #{arg0} OFFSET #{arg1}
 
     </select>
 
@@ -152,5 +152,9 @@
         WHERE found_id = #{foundId}
     </select>
 
+    <select id="count" resultType="int" >
+        SELECT COUNT(*)
+        FROM laf_database.found_register
+    </select>
 
 </mapper>

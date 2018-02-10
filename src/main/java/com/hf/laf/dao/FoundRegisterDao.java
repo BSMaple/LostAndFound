@@ -20,4 +20,6 @@ public interface FoundRegisterDao {
     List selectpagination(int limit,int offset);
 
     List foundinfo(long foundId);
+
+    int  count();
 }

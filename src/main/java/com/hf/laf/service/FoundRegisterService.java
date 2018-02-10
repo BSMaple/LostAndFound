@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface FoundRegisterService {
 
-    List selectpagination(int limit,int offset);
+    List selectPaginationRecord(int limit, int offset);
 
     FoundRegister selectFoundRegisterById(long foundId);
 
@@ -17,5 +17,7 @@ public interface FoundRegisterService {
     int deleteRecord(long foundId);
 
     int updateRecord(FoundRegister record);
+
+    int count();
 
 }

@@ -14,7 +14,7 @@ public class FoundRegisterServiceImpl implements FoundRegisterService {
     @Autowired
     FoundRegisterDao foundRegisterDao;
 
-    public List selectpagination(int limit, int offset){
+    public List selectPaginationRecord(int limit, int offset){
          return foundRegisterDao.selectpagination(limit,offset);
     }
 
@@ -34,6 +34,11 @@ public class FoundRegisterServiceImpl implements FoundRegisterService {
     public FoundRegister selectFoundRegisterById(long foundId) {
         System.out.println("Id 为" + foundId + " 的失物信息被查询了");
         return foundRegisterDao.queryById(foundId);
+    }
+
+    @Override
+    public int count() {
+        return foundRegisterDao.count();
     }
 }
 
