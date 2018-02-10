@@ -1,6 +1,8 @@
 package com.hf.laf.dao;
 
 import com.hf.laf.entity.FoundRegister;
+import com.hf.laf.service.FoundRegisterService;
+import com.hf.laf.service.serviceimpl.FoundRegisterServiceImpl;
 import org.apache.ibatis.annotations.Delete;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +20,9 @@ public class FoundRegisterDaoTest {
     @Autowired
     private FoundRegisterDao foundRegisterDao;
 
+    @Autowired
+    private FoundRegisterService foundRegisterService;
+
     @Test
     public void addRecordTest() {
         FoundRegister foundRegistertest = new FoundRegister();
@@ -29,21 +34,24 @@ public class FoundRegisterDaoTest {
         foundRegistertest.setFoundTelephoneNumber("1008611");
         foundRegistertest.setFoundSituation((byte)1);
         foundRegistertest.setFoundInfoVisible((byte)1);
-        foundRegisterDao.addRecord(foundRegistertest);
+        foundRegistertest.setFoundPic("123.jpg");
+        foundRegisterService.addRecord(foundRegistertest);
     }
 
     @Test
     public void updateRecord() {
-        FoundRegister foundRegistertextu = new FoundRegister();
-        foundRegistertextu.setFoundName("校卡");
-        foundRegistertextu.setFoundPlace("England");
-        foundRegistertextu.setFoundTime(new Date(2018,6,6));
-        foundRegistertextu.setFoundDescribe("blue");
-        foundRegistertextu.setFoundPeople("吴二凡");
-        foundRegistertextu.setFoundTelephoneNumber("1008600");
-        foundRegistertextu.setFoundId(4);
-
-        foundRegisterDao.updateRecord(foundRegistertextu);
+        FoundRegister foundRegistertestu = new FoundRegister();
+        foundRegistertestu.setFoundName("校卡");
+        foundRegistertestu.setFoundPlace("England");
+        foundRegistertestu.setFoundTime(new Date(2018,6,6));
+        foundRegistertestu.setFoundDescribe("blue");
+        foundRegistertestu.setFoundPeople("吴二凡");
+        foundRegistertestu.setFoundTelephoneNumber("1008600");
+        foundRegistertestu.setFoundSituation((byte)0);
+        foundRegistertestu.setFoundInfoVisible((byte)1);
+        foundRegistertestu.setFoundPic("123.jpg");
+        foundRegistertestu.setFoundId(10);
+        foundRegisterService.updateRecord(foundRegistertestu);
 
     }
 

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-
-public class TestController {
+@RequestMapping("/found")
+public class FoundController {
 
     @Autowired
     FoundRegisterService foundRegisterService;
