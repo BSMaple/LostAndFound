@@ -44,6 +44,9 @@
             <if test="foundInfoVisible != null">
                 found_info_visible,
             </if>
+            <if test="foundPic != null">
+                found_pic,
+            </if>
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -78,6 +81,10 @@
 
             <if test="foundInfoVisible != null">
                 #{foundInfoVisible,jdbcType=TINYINT},
+            </if>
+
+            <if test="foundPic != null">
+                #{foundPic,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -122,6 +129,9 @@
 
             <if test="foundInfoVisible != null">
                 found_info_visible=#{foundInfoVisible,jdbcType=TINYINT},
+            </if>
+            <if test="foundPic != null">
+                found_pic=#{foundPic,jdbcType=VARCHAR},
             </if>
         </trim>
         WHERE found_id = #{foundId}
