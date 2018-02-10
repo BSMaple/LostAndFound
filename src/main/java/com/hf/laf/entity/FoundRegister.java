@@ -30,6 +30,8 @@ FoundRegister {
 
     private byte  foundInfoVisible;
 
+    private String foundPic;
+
     public byte getFoundInfoVisible() {
         return foundInfoVisible;
     }
@@ -100,6 +102,14 @@ FoundRegister {
 
     public void setFoundTelephoneNumber(String foundTelephoneNumber) {
         this.foundTelephoneNumber = foundTelephoneNumber;
+    }
+
+    public String getFoundPic() {
+        return foundPic;
+    }
+
+    public void setFoundPic(String foundPic) {
+        this.foundPic = foundPic;
     }
 
     @Override
