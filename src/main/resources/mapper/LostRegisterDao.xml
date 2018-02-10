@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hf.laf.dao.LostRegisterDao">
+
+    <select id="queryById" resultType="com.hf.laf.entity.LostRegister"  parameterType="long">
+        SELECT *
+        FROM laf_database.Lost_register
+        WHERE lost_id = #{lostId}
+    </select>
+
+    <insert id="addRecord" parameterType="com.hf.laf.entity.LostRegister" >
+        insert into laf_database.lost_register
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="lostName != null" >
+                lost_name,
+            </if>
+
+            <if test="lostPlace != null" >
+                lost_place,
+            </if>
+
+            <if test="lostTime != null" >
+                lost_time,
+            </if>
+
+            <if test="lostDescribe != null" >
+                lost_describe,
+            </if>
+
+            <if test="lostPeople != null" >
+                lost_people,
+            </if>
+
+            <if test="lostTelephoneNumber != null" >
+                lost_telephone_number,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="lostName != null" >
+                #{lostName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostPlace != null" >
+                #{lostPlace,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostTime != null" >
+                #{lostTime,jdbcType=DATE},
+            </if>
+
+            <if test="lostDescribe != null" >
+                #{lostDescribe,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostPeople != null" >
+                #{lostPeople,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostTelephoneNumber != null" >
+                #{lostTelephoneNumber,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteRecord"  parameterType="long">
+        DELETE FROM laf_database.lost_register
+        WHERE lost_id = #{lostId}
+    </delete>
+
+    <update id="updateRecord" parameterType="com.hf.laf.entity.LostRegister">
+        UPDATE laf_database.lost_register
+        SET
+
+        <trim prefix=" " suffix="" suffixOverrides="," >
+
+            <if test="lostName != null" >
+                lost_name=#{lostName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostPlace != null" >
+                lost_place=#{lostPlace,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostTime != null" >
+                lost_time=#{lostTime,jdbcType=DATE},
+            </if>
+
+            <if test="lostDescribe != null" >
+                lost_describe=#{lostDescribe,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostPeople != null" >
+                lost_people=#{lostPeople,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lostTelephoneNumber != null" >
+                lost_telephone_number=#{lostTelephoneNumber,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        WHERE lost_id = #{lostId}
+
+    </update>
+
+    <select id="selectpagination" resultType="com.hf.laf.entity.LostRegister" parameterType="int">
+
+        SELECT *
+        FROM laf_database.lost_register
+        LIMIT #{limit} OFFSET #{offset}
+
+    </select>    
+    
+</mapper>
