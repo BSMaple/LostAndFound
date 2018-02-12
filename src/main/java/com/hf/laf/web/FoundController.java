@@ -61,6 +61,12 @@ public class FoundController {
 
         return pag;
 
+    }
+
+    @RequestMapping("/list")
+
+    public String list() {
+        return "foundList";
 
     }
 
