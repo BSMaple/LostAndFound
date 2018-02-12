@@ -73,7 +73,7 @@
 <script th:src="@{/static/js/bootstrap-table.min.js}"></script>
 <script th:src="@{/static/js/bootstrap-table-zh-CN.min.js}"></script>
 <script  th:inline="javascript">
-
+    var root = /*[[@{/}]]*/null;
     $("#foundTable").bootstrapTable({
         url:/*[[@{/found/selectpagination}]]*/null,
         pagination: true,
@@ -88,7 +88,9 @@
                 field:'foundPic',
                 title:'图片',
                 formatter:function(value,row,index){
-                    return '<img style="float: left;width: 100%" src="' + value + '" />';
+
+                    return '<img style="float: left;width: 100%" src="' + root + 'static/img/' + value  + '" />';
+
                 }
             },                {
                 field:'foundPlace',
