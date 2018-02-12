@@ -4,10 +4,12 @@ package com.hf.laf.web;
 import com.hf.laf.dto.PaginationDto;
 import com.hf.laf.entity.FoundRegister;
 import com.hf.laf.service.FoundRegisterService;
+import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -55,7 +57,7 @@ public class FoundController {
 
     @RequestMapping("/selectpagination")
     @ResponseBody
-    public Object selectpagination(int limit,int offset) {
+    public Object selectpagination(@RequestParam(defaultValue = "0") int limit, @RequestParam(defaultValue = "1")  int offset) {
         PaginationDto pag = new PaginationDto();
         pag.setTotal(foundRegisterService.count());
         pag.setRows(foundRegisterService.selectPaginationRecord(limit,offset));
