@@ -7,6 +7,7 @@ import com.hf.laf.service.FoundRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -33,7 +34,7 @@ public class FoundController {
         return foundRegisterService.selectFoundRegisterById(foundId);
     }
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public Object add(FoundRegister record) {
         return foundRegisterService.addRecord(record);
@@ -45,7 +46,7 @@ public class FoundController {
         return foundRegisterService.deleteRecord(foundId);
     }
 
-    @RequestMapping("/update")
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     @ResponseBody
     public Object update(FoundRegister record) {
         return foundRegisterService.updateRecord(record);
