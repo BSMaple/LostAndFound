@@ -140,7 +140,7 @@
 
     <select id="selectpagination" resultType="com.hf.laf.entity.FoundRegister" >
 
-        SELECT found_name,found_place,found_time,found_pic
+        SELECT found_id,found_name,found_place,found_time,found_pic
         FROM laf_database.found_register
         LIMIT #{arg0} OFFSET #{arg1}
 

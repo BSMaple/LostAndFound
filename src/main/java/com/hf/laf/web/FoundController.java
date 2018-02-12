@@ -57,7 +57,7 @@ public class FoundController {
 
     @RequestMapping("/selectpagination")
     @ResponseBody
-    public Object selectpagination(@RequestParam(defaultValue = "0") int limit, @RequestParam(defaultValue = "1")  int offset) {
+    public Object selectpagination(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "0")  int offset) {
         PaginationDto pag = new PaginationDto();
         pag.setTotal(foundRegisterService.count());
         pag.setRows(foundRegisterService.selectPaginationRecord(limit,offset));
