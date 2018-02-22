@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/found")
 public class FoundController {
 
+    public String foundPicPath ;
+
     @Autowired
     FoundRegisterService foundRegisterService;
 
@@ -54,7 +56,7 @@ public class FoundController {
 
         if(!file.isEmpty()){
 
-            String filePath = request.getSession().getServletContext().getRealPath("D:\\Foundpic");
+            String filePath =foundPicPath;
             try {
                 FileUtil.uploadFile(file.getBytes(), filePath, fileName);
             } catch (Exception e) {
@@ -89,22 +91,12 @@ public class FoundController {
 
     }
 
-    /**
-     * 拾物列表页跳转controller
-     * @return 页面文件名
-     */
     @RequestMapping("/list")
+
     public String list() {
         return "foundList";
 
     }
 
-    /**
-     * 新增拾物跳转controller
-     * @return 页面文件名
-     */
-    @RequestMapping("/add")
-    public String newItem() {
-        return "newFoundItem";
-    }
+
 }
