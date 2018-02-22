@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import util.FileUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/found")
@@ -38,7 +42,26 @@ public class FoundController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object add(FoundRegister record) {
+    public Object add(FoundRegister record,@RequestParam("file") MultipartFile file,
+                      HttpServletRequest request) {
+
+
+        String contentType = file.getContentType();
+        String fileName = file.getOriginalFilename();
+        /*System.out.println("fileName-->" + fileName);
+        System.out.println("getContentType-->" + contentType);*/
+
+
+        if(!file.isEmpty()){
+
+            String filePath = request.getSession().getServletContext().getRealPath("D:\\Foundpic");
+            try {
+                FileUtil.uploadFile(file.getBytes(), filePath, fileName);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+            record.setFoundPic(fileName);
+        }
         return foundRegisterService.addRecord(record);
     }
 
