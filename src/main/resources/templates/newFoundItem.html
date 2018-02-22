@@ -16,7 +16,7 @@
 </nav>
 
 <div class="container">
-    <form method="post" th:action="@{/found/add}">
+    <form method="post" th:action="@{/found/add}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="foundName">物品名</label>
             <input type="text" name="foundName" class="form-control" id="foundName" placeholder="物品名"/>

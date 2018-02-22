@@ -1,41 +1,35 @@
 package com.hf.laf.web;
 
 
+import com.hf.laf.configs.PathConfig;
 import com.hf.laf.dto.PaginationDto;
 import com.hf.laf.entity.FoundRegister;
 import com.hf.laf.service.FoundRegisterService;
 import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import util.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
 
 @Controller
 @RequestMapping("/found")
 public class FoundController {
 
-    public String foundPicPath ;
+    @Autowired
+    private PathConfig pathConfig;
 
     @Autowired
     FoundRegisterService foundRegisterService;
 
-
-    @RequestMapping("/hello")
-    public String hello() {
-        return "hello";
-    }
-
-    @RequestMapping("/helloDeal")
-    @ResponseBody
-    public String dealHello(String username, String password) {
-        return "用户名:" + username + "密码：" + password;
-    }
     @RequestMapping("/select")
     @ResponseBody
     public Object select(Integer foundId) {
@@ -44,11 +38,9 @@ public class FoundController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object add(FoundRegister record,@RequestParam("file") MultipartFile file,
-                      HttpServletRequest request) {
+    public Object add(FoundRegister record,@RequestParam("picInput") MultipartFile file) {
 
 
-        String contentType = file.getContentType();
         String fileName = file.getOriginalFilename();
         /*System.out.println("fileName-->" + fileName);
         System.out.println("getContentType-->" + contentType);*/
@@ -56,7 +48,7 @@ public class FoundController {
 
         if(!file.isEmpty()){
 
-            String filePath =foundPicPath;
+            String filePath =pathConfig.getFoundPicPath();
             try {
                 FileUtil.uploadFile(file.getBytes(), filePath, fileName);
             } catch (Exception e) {
@@ -67,17 +59,17 @@ public class FoundController {
         return foundRegisterService.addRecord(record);
     }
 
-    @RequestMapping("/delete")
-    @ResponseBody
-    public Object delete(Integer foundId) {
-        return foundRegisterService.deleteRecord(foundId);
-    }
+//    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+//    @ResponseBody
+//    public Object delete(Integer foundId) {
+//        return foundRegisterService.deleteRecord(foundId);
+//    }
 
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
-    @ResponseBody
-    public Object update(FoundRegister record) {
-        return foundRegisterService.updateRecord(record);
-    }
+//    @RequestMapping(value = "/update",method = RequestMethod.POST)
+//    @ResponseBody
+//    public Object update(FoundRegister record) {
+//        return foundRegisterService.updateRecord(record);
+//    }
 
 
     @RequestMapping("/selectpagination")
@@ -91,11 +83,39 @@ public class FoundController {
 
     }
 
+    @RequestMapping("/pics/{fileName:[a-zA-Z0-9\\\\.]+}")
+    public void getPic(@PathVariable String fileName, HttpServletResponse response){
+        File file = new File(pathConfig.getFoundPicPath());
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file + File.separator +  fileName);
+            OutputStream out = response.getOutputStream();
+
+            FileUtil.streamCopy(out,fileInputStream);
+
+            fileInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 拾物列表页
+     * @return 列表页文件名
+     */
     @RequestMapping("/list")
 
     public String list() {
         return "foundList";
 
+    }
+
+    /**
+     * 新拾物发表页
+     * @return 发表页文件名
+     */
+    @RequestMapping(value = "/add",method = RequestMethod.GET)
+    public String newItem(){
+        return "newFoundItem";
     }
 
 
