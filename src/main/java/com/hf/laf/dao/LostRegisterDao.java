@@ -3,6 +3,7 @@ package com.hf.laf.dao;
 import com.hf.laf.entity.LostRegister;
 import org.apache.ibatis.annotations.Mapper;
 
+import javax.validation.constraints.Digits;
 import java.util.List;
 
 @Mapper
@@ -16,6 +17,9 @@ public interface LostRegisterDao {
 
     int updateRecord(LostRegister record);
 
-    List selectpagination(int limit, int offset);
+    List selectpagination(int limit,int offset);
 
+    List lostinfo(long lostId);
+
+    int  count();
 }

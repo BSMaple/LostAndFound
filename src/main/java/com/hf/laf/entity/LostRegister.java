@@ -1,22 +1,52 @@
 package com.hf.laf.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
-public class LostRegister {
+@Component
+public class
+LostRegister {
 
-    private  Integer lostId;
+    private Integer lostId;
 
-    private  String  lostName;
+    private String  lostName;
 
-    private  String  lostPlace;
+    private String  lostPlace;
 
-    private Date lost_time;
+    private Date lostTime;
 
-    private  String  lostDscrible;
+    private String  lostDescribe;
 
-    private  String  lostPeople;
+    @JsonIgnore
+    private String  lostPeople;
 
-    private  String  lostTelephoneNumber;
+    @JsonIgnore
+    private String  lostTelephoneNumber;
+
+    private byte  lostSituation;
+
+    private byte  lostInfoVisible;
+
+    private String lostPic;
+
+    public byte getLostInfoVisible() {
+        return lostInfoVisible;
+    }
+
+    public void setLostInfoVisible(byte lostInfoVisible) {
+        this.lostInfoVisible = lostInfoVisible;
+    }
+
+    public byte getLostSituation() {
+        return lostSituation;
+    }
+
+    public void setLostSituation(byte lostSituation) {
+        this.lostSituation = lostSituation;
+    }
 
     public Integer getLostId() {
         return lostId;
@@ -43,19 +73,19 @@ public class LostRegister {
     }
 
     public Date getLostTime() {
-        return lost_time;
+        return lostTime;
     }
 
-    public void setLostTime(Date lost_time) {
-        this.lost_time = lost_time;
+    public void setLostTime(Date lostTime) {
+        this.lostTime = lostTime;
     }
 
     public String getLostDescribe() {
-        return lostDscrible;
+        return lostDescribe;
     }
 
-    public void setLostDescribe(String lostDscrible) {
-        this.lostDscrible = lostDscrible;
+    public void setLostDescribe(String lostDescribe) {
+        this.lostDescribe = lostDescribe;
     }
 
     public String getLostPeople() {
@@ -74,14 +104,22 @@ public class LostRegister {
         this.lostTelephoneNumber = lostTelephoneNumber;
     }
 
+    public String getLostPic() {
+        return lostPic;
+    }
+
+    public void setLostPic(String lostPic) {
+        this.lostPic = lostPic;
+    }
+
     @Override
     public String toString() {
         return "LostRegister{" +
                 "lostId=" + lostId +
                 ", lostName='" + lostName + '\'' +
                 ", lostPlace='" + lostPlace + '\'' +
-                ", lost_time='" + lost_time + '\'' +
-                ", lostDscrible='" + lostDscrible + '\'' +
+                ", lostTime='" + lostTime + '\'' +
+                ", lostDescribe='" + lostDescribe + '\'' +
                 ", lostPeople='" + lostPeople + '\'' +
                 ", lostTelephoneNumber='" + lostTelephoneNumber + '\'' +
                 '}';
