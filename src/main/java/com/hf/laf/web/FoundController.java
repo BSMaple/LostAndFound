@@ -89,12 +89,22 @@ public class FoundController {
 
     }
 
+    /**
+     * 拾物列表页跳转controller
+     * @return 页面文件名
+     */
     @RequestMapping("/list")
-
     public String list() {
         return "foundList";
 
     }
 
-
+    /**
+     * 新增拾物跳转controller
+     * @return 页面文件名
+     */
+    @RequestMapping("/add")
+    public String newItem() {
+        return "newFoundItem";
+    }
 }
