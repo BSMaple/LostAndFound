@@ -15,6 +15,7 @@ import util.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -61,17 +62,24 @@ public class FoundController {
         else return ("ERROR");
     }
 
-//    @RequestMapping(value = "/delete",method = RequestMethod.POST)
-//    @ResponseBody
-//    public Object delete(Integer foundId) {
-//        return foundRegisterService.deleteRecord(foundId);
-//    }
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @ResponseBody
+    public Object delete(Integer foundId,HttpSession session) {
+        if (session.getAttribute("isadmin").equals(666) ){
+        return foundRegisterService.deleteRecord(foundId);
+        }
+        return "PasswordError";
+    }
 
-//    @RequestMapping(value = "/update",method = RequestMethod.POST)
-//    @ResponseBody
-//    public Object update(FoundRegister record) {
-//        return foundRegisterService.updateRecord(record);
-//    }
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    @ResponseBody
+    public Object update(FoundRegister record,HttpSession session) {
+        if (session.getAttribute("isadmin").equals(666) ){
+        return foundRegisterService.updateRecord(record);
+    }
+        return  "PasswordError";
+    }
+
 
 
     @RequestMapping("/selectpagination")

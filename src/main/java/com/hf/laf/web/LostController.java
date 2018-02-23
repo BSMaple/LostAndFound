@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import util.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 失物招领控制器
@@ -83,14 +84,20 @@ public class LostController {
 
     @RequestMapping("/delete")
     @ResponseBody
-    public Object delete(Integer lostId) {
-        return lostRegisterService.deleteRecord(lostId);
+    public Object delete(Integer lostId,HttpSession session)
+    {
+        if (session.getAttribute("isadmin").equals(666) )
+        {return lostRegisterService.deleteRecord(lostId);}
+        return "PasswordError";
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     @ResponseBody
-    public Object update(LostRegister record) {
-        return lostRegisterService.updateRecord(record);
+    public Object update(LostRegister record,HttpSession session)
+    {
+        if (session.getAttribute("isadmin").equals(666) ){
+        return lostRegisterService.updateRecord(record);}
+        return "PasswordError";
     }
 
 
