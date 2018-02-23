@@ -59,6 +59,7 @@
 <script th:src="@{/static/js/bootstrap-table-zh-CN.min.js}"></script>
 <script  th:inline="javascript">
     var root = /*[[@{/}]]*/null;
+    var baseDetailUrl = root + "found/detail?id=";
     $("#foundTable").bootstrapTable({
         url:/*[[@{/found/selectpagination}]]*/null,
         pagination: true,
@@ -68,16 +69,17 @@
         columns:[
             {
                 field:'foundName',
-                title:'描述'
-            },                {
+                title:'描述',
+                formatter:function(value,row,index){
+                    return '<a href="' + baseDetailUrl + row['foundId'] + '">' + value + '</a>';
+                }
+            },{
                 field:'foundPic',
                 title:'图片',
                 formatter:function(value,row,index){
-
                     return '<img style="float: left;width: 100%" src="' + root + 'found/pics/' + value  + '" />';
-
                 }
-            },                {
+            },{
                 field:'foundPlace',
                 title:'发现地点',
                 formatter:function(value,row,index){

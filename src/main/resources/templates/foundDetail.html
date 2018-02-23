@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>招领页面</title>
-    <link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/bootstrap.css}" />
     <meta name="viewport" content="width=device-width,
                                      initial-scale=1.0,
                                      maximum-scale=1.0,
@@ -59,11 +59,13 @@
 </nav>
 
 <div class="container">
-
+    <div class="page-header">
+        <h1>失物1<small>教学楼下</small></h1>
+    </div>
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+<script th:src="@{/static/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
 
 </body>
 </html>
