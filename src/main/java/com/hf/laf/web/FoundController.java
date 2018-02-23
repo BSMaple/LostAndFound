@@ -37,7 +37,6 @@ public class FoundController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    @ResponseBody
     public Object add(FoundRegister record,@RequestParam("picInput") MultipartFile file) {
 
 
@@ -56,7 +55,10 @@ public class FoundController {
             }
             record.setFoundPic(fileName);
         }
-        return foundRegisterService.addRecord(record);
+        if (foundRegisterService.addRecord(record) == 1){
+            return "foundList";
+        }
+        else return ("ERROR");
     }
 
 //    @RequestMapping(value = "/delete",method = RequestMethod.POST)

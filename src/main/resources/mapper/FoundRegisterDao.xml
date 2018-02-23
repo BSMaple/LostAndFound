@@ -8,6 +8,7 @@
         SELECT *
         FROM laf_database.found_register
         WHERE found_id = #{foundId}
+        ORDER BY found_id DESC
     </select>
 
     <insert id="addRecord" parameterType="com.hf.laf.entity.FoundRegister">
