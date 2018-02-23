@@ -32,3 +32,16 @@ create table lost_register
   comment '失物登记表' engine=InnoDB
 ;
 
+
+-- auto-generated definition
+CREATE TABLE admin_info
+(
+  id       INT AUTO_INCREMENT
+    PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+)
+  COMMENT '管理员信息表'
+  ENGINE = InnoDB;
+
+
