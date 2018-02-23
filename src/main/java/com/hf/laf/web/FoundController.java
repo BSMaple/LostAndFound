@@ -120,5 +120,12 @@ public class FoundController {
         return "newFoundItem";
     }
 
+    /**
+     *
+     */
+    @RequestMapping(value = "/detail")
+    public String detailPage(){
+        return "foundDetail";
+    }
 
 }
