@@ -8,84 +8,45 @@
                                      initial-scale=1.0,
                                      maximum-scale=1.0,
                                      user-scalable=no" />
-    <style>
-        tr td:nth-child(1){
-            display: block;
-            width: 100%;
-        }
-        tr td:nth-child(2){
-            display: block;
-            float: left;
-            width:100px;
-            height: 100px;
-        }
-        tr td:nth-child(3){
-            /*margin-left: 100px;*/
-            float: left;
-            width: auto;
-        }
 
-    </style>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">招领</a>
-        </div>
+<nav class="navbar navbar-default" th:replace="fragments/naviBarTemplate :: naviBar('found')">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">失物招领 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">失物发布</a></li>
-
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">关于</a></li>
-                <li><a href="#">登陆</a></li>
-
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
 </nav>
 
 <div class="container">
     <div class="page-header">
-        <h2>失物1</h2>
+        <h2>失物1
+            <a style="" class="btn btn-default" th:href="@{/found/list}" >返回</a>
+            <a class="btn btn-default" th:if="${session.isadmin == '666'}" th:href="@{/found/delete(foundId=${#httpServletRequest.getParameter('id')})}">删除记录</a>
+            <a class="btn btn-default" th:if="${session.isadmin == '666'}" href="">编辑记录</a>
+        </h2>
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label for="itemName" class="col-sm-2 control-label">物品名</label>
-            <div id="itemName" class="col-sm-10">
-                <div style="text-align: left" class="control-label">益力多</div>
+            <label for="foundName" class="col-sm-2 control-label">物品名</label>
+            <div  class="col-sm-10">
+                <div style="text-align: left" id="foundName" class="control-label">益力多</div>
             </div>
         </div>
 
         <div class="form-group">
             <label for="foundPlace" class="col-sm-2 control-label">发现地点</label>
-            <div id="foundPlace" class="col-sm-10">
-                <div style="text-align: left" class="control-label">教学楼</div>
+            <div  class="col-sm-10">
+                <div style="text-align: left" id="foundPlace" class="control-label">教学楼</div>
             </div>
         </div>
         <div class="form-group">
             <label for="foundTime" class="col-sm-2 control-label">发现时间</label>
-            <div id="foundTime" class="col-sm-10">
-                <div style="text-align: left" class="control-label">2012/12/12</div>
+            <div  class="col-sm-10">
+                <div id="foundTime" style="text-align: left" class="control-label">2012/12/12</div>
             </div>
         </div>
         <div class="form-group">
             <label for="foundDescribe" class="col-sm-2 control-label">详情描述</label>
-            <div id="foundDescribe" class="col-sm-10">
-                <div style="text-align: left" class="control-label">天哪 它就躺在那边的地上一动不动</div>
+            <div class="col-sm-10">
+                <div id="foundDescribe" style="text-align: left" class="control-label">天哪 它就躺在那边的地上一动不动</div>
             </div>
         </div>
         <div class="form-group">
@@ -94,14 +55,34 @@
                 <img id="foundPic" />
             </div>
         </div>
-        <a class="btn" th:if="@{session.isadmin == '666'}" th:href="">删除记录</a>
-        <a class="btn" th:if="@{session.isadmin == '666'}" th:href="">删除记录</a>
-        <a class="btn" th:if="@{session.isadmin == '666'}" th:href="">删除记录</a>
+
+
+
+
+
     </form>
 </div>
 
 <script th:src="@{/static/js/jquery-3.3.1.js}"></script>
 <script th:src="@{/static/js/bootstrap.min.js}"></script>
 
+<script th:inline="javascript">
+    var baseUrl = /*[[@{/found/}]]*/null;
+    var queryUrl = baseUrl + "select";
+    var picUrl = baseUrl + "pics/";
+    var data = {
+        foundId:/*[[${#httpServletRequest.getParameter("id")}]]*/null
+    };
+    $(function () {
+        $.get(queryUrl,data,function(data,status,xhr){
+            $("#foundName").text(data['foundName']);
+            $("#foundPlace").text(data['foundPlace']);
+            $("#foundTime").text(data['foundTime']);
+            $("#foundDescribe").text(data['foundDescribe']);
+            $("#foundPic").attr("src",picUrl + data['foundPic']);
+
+        },"json");
+    });
+</script>
 </body>
 </html>

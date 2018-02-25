@@ -59,25 +59,25 @@ public class FoundController {
         if (foundRegisterService.addRecord(record) == 1){
             return "foundList";
         }
-        else return ("ERROR");
+        else return "addError";
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     @ResponseBody
     public Object delete(Integer foundId,HttpSession session) {
-        if (session.getAttribute("isadmin").equals(666) ){
+        if (session.getAttribute("isadmin").equals("666") ){
         return foundRegisterService.deleteRecord(foundId);
         }
-        return "PasswordError";
+        return "permissionError";
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     @ResponseBody
     public Object update(FoundRegister record,HttpSession session) {
-        if (session.getAttribute("isadmin").equals(666) ){
+        if (session.getAttribute("isadmin").equals("666") ){
         return foundRegisterService.updateRecord(record);
     }
-        return  "PasswordError";
+        return  "permissionError";
     }
 
 

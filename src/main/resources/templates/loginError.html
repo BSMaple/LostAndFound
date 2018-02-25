@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>失物找寻</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/bootstrap.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/font-awesome.min.css}" />
+    <meta name="viewport" content="width=device-width,
+                                     initial-scale=1.0,
+                                     maximum-scale=1.0,
+                                     user-scalable=no"  />
+
+</head>
+<body>
+<nav class="navbar navbar-default" th:replace="fragments/naviBarTemplate :: naviBar('adminLogin')">
+
+</nav>
+
+<div class="container">
+
+    <h1 class="fa fa-wheelchair fa-5x">登录失败</h1>
+    <p><strong>错误的用户名或密码</strong></p>
+
+    <p>
+        如果您是管理员，请联系网站管理者
+    </p>
+
+
+
+
+</div>
+
+<script th:src="@{/static/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

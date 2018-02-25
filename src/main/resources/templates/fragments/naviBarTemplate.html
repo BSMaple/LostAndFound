@@ -14,20 +14,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">招领</a>
+            <a class="navbar-brand" th:href="@{/found/list}">招领</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li th:classappend="${module == 'found' ? 'active' : ''}"><a th:href="@{/found/list}" href="#">失物招领 <span class="sr-only">(current)</span></a></li>
-                <li th:classappend="${module == 'lost' ? 'active' : ''}"><a th:href="@{/lost/list}" href="#">失物发布</a></li>
+                <li th:classappend="${module == 'found' ? 'active' : ''}"><a th:href="@{/found/list}" >失物招领 <span class="sr-only">(current)</span></a></li>
+                <li th:classappend="${module == 'lost' ? 'active' : ''}"><a th:href="@{/lost/list}" >失物发布</a></li>
 
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">关于</a></li>
-                <li><a href="#">登陆</a></li>
+                <li>
+                    <a th:if="${session.isadmin != '666'}" th:classappend="${module == 'adminLogin' ? 'active' : ''}" th:href="@{/admin/login}">管理员登陆</a>
+                    <p class="navbar-text" th:if="${session.isadmin == '666'}">管理员模式</p>
+                </li>
+
 
             </ul>
         </div><!-- /.navbar-collapse -->

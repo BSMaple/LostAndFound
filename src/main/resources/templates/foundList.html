@@ -41,8 +41,11 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="row">
-                <button onclick="$('#foundTable').bootstrapTable('refresh')" class="btn btn-default"><span class="fa fa-refresh"></span>刷新数据</button>
-                <a th:href="@{/found/add}" class="btn btn-default pull-right"><span class="fa fa-plus"></span>发布招领</a>
+                <div class="col-sm-12">
+                    <button onclick="$('#foundTable').bootstrapTable('refresh')" class="btn btn-default"><span class="fa fa-refresh"></span>刷新数据</button>
+                    <a th:href="@{/found/add}" class="btn btn-default pull-right"><span class="fa fa-plus"></span>发布招领</a>
+                </div>
+
             </div>
 
             <table id="foundTable">
