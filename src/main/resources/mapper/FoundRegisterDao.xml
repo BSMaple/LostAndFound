@@ -4,11 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hf.laf.dao.FoundRegisterDao">
 
+    <select id="queryByIdNotAuth" resultType="com.hf.laf.entity.FoundRegister" parameterType="long">
+        SELECT found_name,found_place,found_time,found_describe,found_pic,if(found_info_visible=1,found_people,null) as found_people,if(found_info_visible=1,found_telephone_number,null) as found_telephone_number
+        FROM laf_database.found_register
+        WHERE found_id = #{foundId}
+
+    </select>
     <select id="queryById" resultType="com.hf.laf.entity.FoundRegister" parameterType="long">
         SELECT *
         FROM laf_database.found_register
         WHERE found_id = #{foundId}
-        ORDER BY found_id DESC
+
     </select>
 
     <insert id="addRecord" parameterType="com.hf.laf.entity.FoundRegister">
@@ -139,10 +145,20 @@
 
     </update>
 
-    <select id="selectpagination" resultType="com.hf.laf.entity.FoundRegister" >
+    <select id="selectPagination" resultType="com.hf.laf.entity.FoundRegister" >
 
         SELECT found_id,found_name,found_place,found_time,found_pic
         FROM laf_database.found_register
+        ORDER BY found_id DESC
+        LIMIT #{arg0} OFFSET #{arg1}
+
+    </select>
+    <select id="selectReviewedPagination" resultType="com.hf.laf.entity.FoundRegister" >
+
+        SELECT found_id,found_name,found_place,found_time,found_pic
+        FROM laf_database.found_register
+        WHERE had_review = 1
+        ORDER BY found_id DESC
         LIMIT #{arg0} OFFSET #{arg1}
 
     </select>
@@ -157,5 +173,17 @@
         SELECT COUNT(*)
         FROM laf_database.found_register
     </select>
+
+    <select id="countReviewed" resultType="int" >
+        SELECT COUNT(*)
+        FROM laf_database.found_register
+        WHERE had_review = 1
+    </select>
+
+    <update id="setReview">
+        UPDATE laf_database.found_register
+        SET had_review = #{arg0}
+        WHERE found_id = #{arg1}
+    </update>
 
 </mapper>

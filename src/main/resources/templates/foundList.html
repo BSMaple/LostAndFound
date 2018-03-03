@@ -64,7 +64,7 @@
     var root = /*[[@{/}]]*/null;
     var baseDetailUrl = root + "found/detail?id=";
     $("#foundTable").bootstrapTable({
-        url:/*[[@{/found/selectpagination}]]*/null,
+        url:/*[[@{/found/selectPagination}]]*/null,
         pagination: true,
         pageSize: 10, // 页面数据条数
         pageNumber: 1, // 首页页码
@@ -92,14 +92,22 @@
                 field:'foundTime',
                 title:'发现时间',
                 formatter:function(value,row,index){
-                    return "<div>发现时间：" + value + "</div>";
+                    return "<div>发现时间：" + formatDateTime(value) + "</div>";
                 }
             }
         ],
         showHeader:false
 
     });
-
+    function formatDateTime(inputTime) {
+        var date = new Date(inputTime);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        return y + '-' + m + '-' + d;
+    };
 </script>
 </body>
 </html>

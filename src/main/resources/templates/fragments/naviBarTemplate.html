@@ -28,9 +28,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a th:if="${session.isadmin != '666'}" th:classappend="${module == 'adminLogin' ? 'active' : ''}" th:href="@{/admin/login}">管理员登陆</a>
-                    <p class="navbar-text" th:if="${session.isadmin == '666'}">管理员模式</p>
+                    <a href="#" class="navbar-text" th:if="${T(com.hf.laf.util.AdminTool).isAdmin(session)}">管理员模式</a>
                 </li>
-
+                <li th:if="${T(com.hf.laf.util.AdminTool).isAdmin(session)}">
+                    <a th:href="@{/admin/logout}">退出登录</a>
+                </li>
 
             </ul>
         </div><!-- /.navbar-collapse -->

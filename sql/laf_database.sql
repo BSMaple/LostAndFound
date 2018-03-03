@@ -10,10 +10,14 @@ create table found_register
   found_telephone_number varchar(255) null,
   found_situation tinyint(2) default '0' not null,
   found_info_visible tinyint default '0' not null,
-  found_pic varchar(255) default 'empty.jpg' null
+  found_pic varchar(255) default 'empty.jpg' null,
+  had_review tinyint default '0' not null comment '审核状态 1为通过
+	'
 )
   comment '拾物登记表' engine=InnoDB
 ;
+
+
 
 create table lost_register
 (

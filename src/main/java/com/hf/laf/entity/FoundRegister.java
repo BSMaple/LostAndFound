@@ -20,10 +20,8 @@ FoundRegister {
 
     private String  foundDescribe;
 
-    @JsonIgnore
     private String  foundPeople;
 
-    @JsonIgnore
     private String  foundTelephoneNumber;
 
     private byte  foundSituation;
@@ -31,6 +29,8 @@ FoundRegister {
     private byte  foundInfoVisible;
 
     private String foundPic;
+
+    private int hadReview;
 
     public byte getFoundInfoVisible() {
         return foundInfoVisible;
@@ -110,6 +110,14 @@ FoundRegister {
 
     public void setFoundPic(String foundPic) {
         this.foundPic = foundPic;
+    }
+
+    public int getHadReview() {
+        return hadReview;
+    }
+
+    public void setHadReview(int hadReview) {
+        this.hadReview = hadReview;
     }
 
     @Override

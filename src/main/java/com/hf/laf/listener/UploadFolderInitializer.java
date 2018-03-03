@@ -1,12 +1,11 @@
 package com.hf.laf.listener;
 
 import com.hf.laf.configs.PathConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.util.ResourceUtils;
-import util.FileUtil;
+import com.hf.laf.util.FileUtil;
 
 import java.io.File;
 import java.io.FileInputStream;

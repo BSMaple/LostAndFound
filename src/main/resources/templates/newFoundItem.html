@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>招领页面</title>
     <link type="text/css" rel="stylesheet" th:href="@{/static/css/bootstrap.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/datepicker.css}"/>
     <meta name="viewport" content="width=device-width,
                                      initial-scale=1.0,
                                      maximum-scale=1.0,
@@ -27,7 +28,8 @@
         </div>
         <div class="form-group">
             <label for="foundTime">被发现时间</label>
-            <input type="text" class="form-control" name="foundTime" id="foundTime" placeholder="被发现时间"/>
+            <input class="form-control" readonly="readonly" name="foundTime" id="foundTime" type="text" data-date-format="yyyy/mm/dd" >
+            <p class="help-block">点击选择日期</p>
         </div>
         <div class="form-group">
             <label for="foundDescribe">具体描述</label>
@@ -60,6 +62,9 @@
 
 <script th:src="@{/static/js/jquery-3.3.1.js}"></script>
 <script th:src="@{/static/js/bootstrap.min.js}"></script>
-
+<script th:src="@{/static/js/bootstrap-datepicker.js}"></script>
+<script>
+    $("#foundTime").datepicker();
+</script>
 </body>
 </html>

@@ -11,15 +11,23 @@ public interface FoundRegisterDao {
 
     FoundRegister queryById(long foundId);
 
+    FoundRegister queryByIdNotAuth(long foundId);
+
     int addRecord(FoundRegister record);
 
     int deleteRecord(long foundId);
 
     int updateRecord(FoundRegister record);
 
-    List selectpagination(int limit,int offset);
+    List selectReviewedPagination(int limit,int offset);
+
+    List selectPagination(int limit,int offset);
 
     List foundinfo(long foundId);
 
+    int setReview(int hadReview,int foundId);
+
     int  count();
+
+    int  countReviewed();
 }
